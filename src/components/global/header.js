@@ -5,8 +5,8 @@ const Header = () => {
 
     return(
         <Container fixed >
-            <Box sx={{ height: '15vh', }} >
-             <Typography variant="h2" color={'Black'} sx={{bgcolor:'yellow', fontFamily:'"Dela Gothic One", cursive'}} >
+            <Box sx={{ bgcolor:'yellow', border:5, borderRadius:5, borderColor:'lightBlue'}} >
+             <Typography variant="h2" color={'Black'} sx={{ fontFamily:'"Dela Gothic One", cursive'}} >
                 Yugi-oh Pokemon Blender
             </Typography> 
             </Box>

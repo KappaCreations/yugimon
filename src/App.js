@@ -8,11 +8,13 @@ import Blender from './components/interactive/blender';
 
 function App() {
   return (
-    
-   <Container disableGutters fixed>
+    <div style={{background:'#696969'}}>
+      <Container disableGutters fixed sx={{padding:'3px'}}>
       <Header/>
       <Blender/>
    </Container>
+   </div>
+   
    
   );
 }

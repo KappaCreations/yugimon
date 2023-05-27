@@ -1,57 +1,49 @@
-import React from "react";
-import Paper from '@mui/material/Paper';
-import { Grid,Container,Box, Typography } from "@mui/material";
+import React, { useState } from 'react';
+import { Grid, Container, Box, Typography, Button, Fab } from '@mui/material';
+import useFetchapi from '../hooks/apifetch';
+import GeneratorBox from './generatorBox';
 
-
-  
 const Blender = () => {
+  const pokeApi = 'https://pokeapi.co/api/v2/pokemon?limit=151';
+  const yugiApi = 'https://db.ygoprodeck.com/api/v7/cardinfo.php';
 
-    return(
-        <div >
-        <Grid container spacing={3}>
-          <Grid item xs={6}>
-            <Container sx={{bgcolor:'white',height:'70vh'}}>
-                <Typography variant="h4" sx={{bgcolor:'white', fontFamily:'"Dela Gothic One", cursive', textAlign:'center',}}>
-                Pokemon
-                </Typography>
-            </Container>
-          </Grid>
+//   const [pokemon, setPokemon] = useState(null);
+//   const { data: pokeData, loading: pokeLoading, fetchRandomMon: fetchRandomMon1 } = useFetchapi(pokeApi);
+//   const { data: yugiData, loading: yugiLoading, fetchRandomMon: fetchRandomMon2 } = useFetchapi(yugiApi);
 
-          <Grid item xs={6}>
-            <Container sx={{bgcolor:'white',height:'70vh'}}>
-                <Typography variant="h4" sx={{bgcolor:'white', fontFamily:'"Dela Gothic One", cursive', textAlign:'center',}}>
-                YuGi-Oh
-                </Typography>
-            </Container>
-          </Grid>
-        </Grid>
-      </div>
+//   const handleRandomPokemon = () => {
+//     fetchRandomMon1();
+//   };
 
+//   const handleRandomDuelMonster = () => {
+//     fetchRandomMon2();
+//   };
 
+//   const handleSavePokemon = () => {
+//     const randomIndex = Math.floor(Math.random() * pokeData.length);
+//     setPokemon(pokeData[randomIndex]);
+//   };
 
+//   const handleSaveDuel = () => {
+//     const randomIndex = Math.floor(Math.random() * yugiData.length);
+//     setPokemon(yugiData[randomIndex]);
+//   };
 
-        // <Container fixed>
-        //     <Grid container  spacing={2} >
-        //     <Grid item xs={6} style={{background:'white', height:'70vh', padding:30, alignContent:'center', justifyContent:'center'}}>
-        //     <item>
-        //     <Typography  sx={{bgcolor:'white', fontFamily:'"Dela Gothic One", cursive', textAlign:'center'}}>
-        //         Pokemon
-        //     </Typography>
-        //     </item>
-        //     </Grid>
-            
-        //     <Grid item xs={6} style={{background:'white', height:'70vh', padding:30, alignContent:'center', justifyContent:'center'}}>
-        //     <item>
-                
-        //     </item>
-        //     </Grid>
-        // </Grid>
-        // </Container>
-        
-    
-    )
+  return (
+    <Grid container spacing={3} sx={{ padding: '10px' }}>
+      <Grid item xs={6}>
+        <Container sx={{ bgcolor: 'white', height: '70vh', border: 10, borderRadius: '10px', padding: '0px' }}>
+         <GeneratorBox name={'Pokemon'} url={pokeApi}/>
+        </Container>
+      </Grid>
 
-
-}
+      <Grid item xs={6}>
+        <Container sx={{ bgcolor: 'white', height: '70vh', border: 10, borderRadius: '10px', padding: '0px' }}>
+        <GeneratorBox name={'YuGi-Oh'} url={yugiApi}/>
+        </Container>
+      </Grid>
+    </Grid>
+  );
+};
 
 export default Blender;
