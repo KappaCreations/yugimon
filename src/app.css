@@ -1,0 +1,32 @@
+@import url("https://fonts.googleapis.com/css2?family=Dela+Gothic+One&display=swap");
+
+/* .App {
+  font-family: "Dela Gothic One", cursive;
+  background-color: #696969;
+  flex: auto;
+} */
+
+body{
+    background-color: #696969;
+    margin: 0;
+    flex: auto;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    padding: 30;
+    align-content: center;
+}
+
+
+
+*{
+    flex: auto;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    padding: 30;
+    align-content: center;
+
+}
+
+
