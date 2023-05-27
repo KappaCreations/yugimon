@@ -5,7 +5,7 @@ import GeneratorBox from './generatorBox';
 
 const Blender = () => {
   const pokeApi = 'https://pokeapi.co/api/v2/pokemon?limit=151';
-  const yugiApi = 'https://api.gwent.one/?key=data&response=json&version=3.0.0';
+  const yugiApi = 'https://db.ygoprodeck.com/api/v7/cardinfo.php?type=Normal%20Monster';
 
 
   return (
