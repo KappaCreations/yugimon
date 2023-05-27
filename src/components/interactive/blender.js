@@ -5,29 +5,8 @@ import GeneratorBox from './generatorBox';
 
 const Blender = () => {
   const pokeApi = 'https://pokeapi.co/api/v2/pokemon?limit=151';
-  const yugiApi = 'https://db.ygoprodeck.com/api/v7/cardinfo.php';
+  const yugiApi = 'https://api.gwent.one/?key=data&response=json&version=3.0.0';
 
-//   const [pokemon, setPokemon] = useState(null);
-//   const { data: pokeData, loading: pokeLoading, fetchRandomMon: fetchRandomMon1 } = useFetchapi(pokeApi);
-//   const { data: yugiData, loading: yugiLoading, fetchRandomMon: fetchRandomMon2 } = useFetchapi(yugiApi);
-
-//   const handleRandomPokemon = () => {
-//     fetchRandomMon1();
-//   };
-
-//   const handleRandomDuelMonster = () => {
-//     fetchRandomMon2();
-//   };
-
-//   const handleSavePokemon = () => {
-//     const randomIndex = Math.floor(Math.random() * pokeData.length);
-//     setPokemon(pokeData[randomIndex]);
-//   };
-
-//   const handleSaveDuel = () => {
-//     const randomIndex = Math.floor(Math.random() * yugiData.length);
-//     setPokemon(yugiData[randomIndex]);
-//   };
 
   return (
     <Grid container spacing={3} sx={{ padding: '10px' }}>

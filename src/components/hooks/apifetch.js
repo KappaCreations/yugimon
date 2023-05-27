@@ -10,13 +10,14 @@ const useFetchapi = (url) => {
 
       const response = await fetch(url);
       const { results } = await response.json();
-
+        
       setData(results);
       setLoading(false);
     } catch (error) {
       console.error('Error fetching data:', error);
       setLoading(false);
     }
+    
   };
 
   return { data, loading, fetchRandomMon };

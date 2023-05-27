@@ -15,7 +15,7 @@ const GeneratorBox = (props) => {
       {console.log(mon.name);
     }}
         
-  }, []);
+  }, [data]);
 
   const handleRandomMon = () => {
     fetchRandomMon();
