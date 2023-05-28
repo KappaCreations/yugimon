@@ -1,20 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Box, Typography, Fab } from '@mui/material';
 import useFetchapi from '../hooks/apifetch';
 
-const GeneratorBox = (props) => {
+const GeneratorBox = ({ name, url, contextValue, setContextValue }) => {
   const [mon, setMon] = useState(null);
-  const { data, loading, fetchRandomMon } = useFetchapi(props.url);
-  const [selected, setSelected] = useState(false);
+  const { data, loading, fetchRandomMon } = useFetchapi(url);
 
   useEffect(() => {
     if (data.length > 0) {
       const randomIndex = Math.floor(Math.random() * data.length);
       setMon(data[randomIndex]);
-      if(mon !== null)
-      {console.log(mon.name);
-    }}
-        
+    }
   }, [data]);
 
   const handleRandomMon = () => {
@@ -22,19 +18,19 @@ const GeneratorBox = (props) => {
   };
 
   const handleSaveMon = () => {
-    setSelected(true);
+    setContextValue(mon);
   };
 
   return (
     <>
-      <Box sx={{ bgcolor: 'red', height: '50px', border: 5, borderRadius: '10px', marginTop: '5px' }}>
+      <Box sx={{ boxShadow: 2, bgcolor: 'red', height: '50px', border: 5, borderRadius: '10px', marginTop: '5px' }}>
         <Typography variant="h4" sx={{ fontFamily: '"Dela Gothic One", cursive', textAlign: 'center' }}>
-          {props.name}
+          {name}
         </Typography>
       </Box>
-      <Box sx={{ bgcolor: 'grey', height: 0.85, border: 5, borderRadius: '10px', marginTop: '5px', padding: '20px' }}>
+      <Box sx={{ boxShadow: 12, bgcolor: 'grey', height: 0.85, border: 5, borderRadius: '10px', marginTop: '5px', padding: '20px' }}>
         <Typography variant="h4" sx={{ fontFamily: '"Dela Gothic One", cursive', textAlign: 'center' }}>
-          Click the button below to select a random {props.name}
+          Click the button below to select a random {name}
         </Typography>
         <div>
           <Fab
@@ -44,7 +40,8 @@ const GeneratorBox = (props) => {
             size="large"
             sx={{ bgcolor: 'white', color: 'black' }}
           >
-            {loading ? <h1>Loading...</h1> : <h4>Generate {props.name}</h4>}
+            {loading ? <Typography variant="h7" sx={{ fontFamily: '"Dela Gothic One", cursive', textAlign: 'center' }}>Loading...</Typography> : 
+            <Typography variant="h7" sx={{ fontFamily: '"Dela Gothic One", cursive', textAlign: 'center' }}>Generate {name}</Typography>}
           </Fab>
         </div>
         <div>
@@ -52,21 +49,21 @@ const GeneratorBox = (props) => {
             <>
             </>
           ) : (
-            <>
-              {!selected ? (
+            <Box sx={{ boxShadow: 12,bgcolor: 'red', height: '140px', border: 5, borderRadius: '10px', marginTop: '15px' }}>
+              {!contextValue ? (
                 <div>
-                  {mon && mon.name && <h3>{mon.name}</h3>}
-                  <Fab onClick={handleSaveMon} variant="extended" size="large" sx={{ bgcolor: 'white', color: 'black' }}>
-                    Save {props.name}
+                  {mon && mon.name && <Typography variant="h4" sx={{ fontFamily: '"Dela Gothic One", cursive', textAlign: 'center' }}>{mon.name}</Typography>}
+                  <Fab onClick={handleSaveMon} variant="extended" size="large" sx={{ bgcolor: 'white', color: 'black' , marginTop:2}}>
+                  <Typography variant="h7" sx={{ fontFamily: '"Dela Gothic One", cursive', textAlign: 'center' }}> Save {name} </Typography>
                   </Fab>
                 </div>
               ) : (
                 <div>
-                  <h3>{props.name} Selected:</h3>
-                  {mon && mon.name && <p>{mon.name}</p>}
+                  <Typography variant="h6" sx={{ fontFamily: '"Dela Gothic One", cursive', textAlign: 'center',justifyContent:'center' }}>{name} Selected:</Typography>
+                  {mon && mon.name && <Typography variant="h4" sx={{ fontFamily: '"Dela Gothic One", cursive', textAlign: 'center' }}>{mon.name}</Typography>}
                 </div>
               )}
-            </>
+            </Box>
           )}
         </div>
       </Box>
