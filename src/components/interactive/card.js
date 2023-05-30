@@ -1,64 +1,123 @@
-import React from "react";
-import { Container, Box, Typography } from "@mui/material";
+import React, { useContext, useEffect,useState } from 'react';
+import {Box, Typography } from "@mui/material";
+import { MonContext } from "../hooks/MonContext";
 
 const Card = () => {
   const cardWidth = "calc(66.6667vh * 2 / 3)"; // Two-thirds of the viewport height
   const cardHeight = "66.6667vh"; // Set the desired height of the card
+
   const maxWidth = `calc((100vh * 2 / 3) / 1.425)`; // Two-thirds of the viewport width divided by the aspect ratio (1.425)
+  const { poke, yugi } = useContext(MonContext);
+
+  const [sprite, setSprite] = useState(null);
+
+  useEffect(() => {
+    const fetchSprite = async () => {
+      try {
+        const response = await fetch(poke.url);
+        const data = await response.json();
+        setSprite(data.sprites.front_shiny);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchSprite();
+  }, []);
 
   return (
-    <Container fixed>
+   <Box
+  sx={{
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: '100vh',
+  }}
+>
+  <Box
+    sx={{
+      position: 'relative',
+      width: cardWidth,
+      height: cardHeight,
+      maxWidth: maxWidth,
+      backgroundColor: 'grey',
+      justifyContent: 'center',
+      alignItems: 'center',
+      transform: 'scale(1.41)',
+
+    }}
+  >
+    <img
+      src="https://i.ibb.co/mG6jvpR/monster-normal.png"
+      alt="Monster"
+      style={{
+        width: '100%',
+        height: '100%',
+        position: 'absolute',
+        zIndex: '1',
+        top: 0,
+        left: 0,
+      }}
+    />
+
+    <Box
+      sx={{
+        position: 'relative',
+        zIndex: '2',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        marginTop: '20px',
+      }}
+    >
       <Box
         sx={{
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          height: '100vh',
+          textTransform: 'uppercase',
+          marginBottom: '20px',
         }}
       >
-        <Box
-          sx={{
-            position: 'relative',
-            width: cardWidth,
-            height: cardHeight,
-            maxWidth: maxWidth,
-            backgroundColor: '#1d1d1d',
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            transform: 'scale(1.5)', // Adjust the scaling factor as needed
-          }}
-        >
-          <Box
-            sx={{
-              position: 'relative',
-              width: '80%',
-              height: '80%',
-              backgroundColor: '#2c2c2c',
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              padding: '10px',
-            }}
-          >
-            <Typography variant="h5" color="text.primary" sx={{ fontFamily: 'Arial', marginTop: '10px', color: '#ffffff', backgroundColor: '#2c2c2c', padding: '5px' }}>
-              Card Name
-            </Typography>
-            <Box
-              sx={{
-                width: '70%',
-                height: '70%',
-                backgroundColor: '#555555',
-              }}
-            />
-            <Typography variant="body1" color="text.secondary" sx={{ fontFamily: 'Arial', marginTop: '5px', color: '#ffffff' }}>
-              Card Description
-            </Typography>
-            {/* Additional card details can be added here */}
-          </Box>
-        </Box>
+        <Typography variant="h6" sx={{ fontFamily: '"Dela Gothic One", cursive', textAlign: 'center' }}>
+          {poke.name} {yugi.race}
+        </Typography>  
       </Box>
-    </Container>
+      <Box
+        sx={{
+          boxShadow: 12,
+          bgcolor: 'lightgreay',
+          height:'250px',
+          marginBottom: '20px',
+        }}
+      >
+        <img src={sprite} alt="" style={{ width: '100%', height: '100%' }} />
+      </Box>
+      <Box
+        sx={{
+          padding: '10px',
+          width:'290px',
+          marginBottom:'26px',
+          position:'absolute',
+          marginTop:'400px'
+        }}
+      >
+        <Typography variant="body2" sx={{ fontFamily: '"Dela Gothic One", cursive', textAlign: 'center', fontSize: 11, lineHeight: 1 }}>
+          {yugi.desc}
+        </Typography>
+        
+      </Box>
+      <Box sx={{ position:'absolute',marginTop:'485px', marginLeft: '120px'}}>
+      <Typography variant="body2" sx={{ fontFamily: '"Dela Gothic One", cursive', textAlign: 'center', fontSize: 10, lineHeight: 1 }}>
+      {yugi.atk}
+        </Typography> 
+        </Box>
+        <Box sx={{ position:'absolute',marginTop:'485px', marginLeft: '240px'}}>
+      <Typography variant="body2" sx={{ fontFamily: '"Dela Gothic One", cursive', textAlign: 'center', fontSize: 10, lineHeight: 1 }}>
+      {yugi.def}
+        </Typography>
+      </Box>
+    </Box>
+  </Box>
+</Box>
+
   );
 };
 
